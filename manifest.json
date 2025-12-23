@@ -2,20 +2,21 @@
   "name": "Sector Ω-7 Research Terminal",
   "short_name": "Sector Ω-7",
   "description": "Secure research terminal access for authorized personnel",
-"start_url": "/Research-Portal/",
+  "start_url": "/Research-Portal/index.html",
+  "scope": "/Research-Portal/",
   "display": "standalone",
   "background_color": "#05060a",
   "theme_color": "#05060a",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/Research-Portal/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "/Research-Portal/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
