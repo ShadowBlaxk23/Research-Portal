@@ -2,7 +2,7 @@
   "name": "Sector Ω-7 Research Terminal",
   "short_name": "Sector Ω-7",
   "description": "Secure research terminal access for authorized personnel",
-  "start_url": "/",
+  "start_url": "/research-terminal/",
   "display": "standalone",
   "background_color": "#05060a",
   "theme_color": "#05060a",
