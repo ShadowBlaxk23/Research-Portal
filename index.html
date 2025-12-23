@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05060a" />
+  <title>Sector Ω-7 Research Terminal</title>
+  
+  <!-- PWA Setup -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Animated Background Grid -->
+  <div class="scene" id="scene"></div>
+
+  <!-- Main Card Container -->
+  <div class="card">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginBox" class="login-box">
+      <div class="header-section">
+        <h2>SECTOR Ω-7</h2>
+        <p class="subtitle">Research Terminal Access</p>
+      </div>
+
+      <div id="errorMsg" class="error-message"></div>
+
+      <div class="input-group">
+        <label class="field-label">Research ID</label>
+        <input id="username" type="text" placeholder="Enter your codename" autocomplete="username">
+      </div>
+
+      <div class="input-group">
+        <label class="field-label">Clearance Key</label>
+        <input id="password" type="password" placeholder="Enter clearance key" autocomplete="current-password">
+      </div>
+
+      <label class="checkbox-label">
+        <input type="checkbox" id="showPass" onclick="togglePass()">
+        <span>Show clearance key</span>
+      </label>
+
+      <button class="btn primary-btn" onclick="login()">
+        <span>INITIALIZE SESSION</span>
+      </button>
+    </div>
+
+    <!-- ACCESS GRANTED SCREEN -->
+    <div id="accessGranted" class="hidden access-granted">
+      <div class="access-icon" id="accessGlyph"></div>
+      <div class="access-text">ACCESS GRANTED</div>
+      <div class="access-subtext">Initializing workspace...</div>
+    </div>
+
+    <!-- PROFILE/WORKSPACE -->
+    <div id="profilePage" class="profile-page hidden">
+      <div class="profile-header">
+        <h2 id="profileName">Researcher Profile</h2>
+        <button class="logout-btn" onclick="logout()">End Session</button>
+      </div>
+
+      <!-- Profile Picture Section -->
+      <div class="profile-picture-section">
+        <div class="picture-container">
+          <img id="profilePic" src="" alt="Profile" />
+          <div id="picLabel" class="pic-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+        <label class="upload-btn">
+          <input type="file" id="photoUpload" accept="image/*" onchange="loadPhoto(event)" hidden>
+          Update Photo
+        </label>
+      </div>
+
+      <!-- Identity Fields -->
+      <div class="profile-fields">
+        
+        <div class="input-group">
+          <label class="field-label">Codename</label>
+          <input id="field_codename" type="text" placeholder="Research codename">
+        </div>
+
+        <div class="input-group">
+          <label class="field-label">Legal Name</label>
+          <input id="field_realname" type="text" placeholder="Full name or alias">
+        </div>
+
+        <div class="input-group">
+          <label class="field-label">Research Specialization</label>
+          <input id="field_role" type="text" placeholder="Primary research focus">
+        </div>
+
+        <div class="input-group">
+          <label class="field-label">Clearance Level</label>
+          <input id="field_clearance" type="text" placeholder="Security clearance">
+        </div>
+
+        <!-- Status System -->
+        <div class="status-system">
+          <div class="input-group">
+            <label class="field-label">Status Management</label>
+            <select id="statusMode">
+              <option value="auto">Automatic (Active on login)</option>
+              <option value="manual">Manual Control</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label id="statusLabel" class="field-label">
+              Current Status
+              <span class="status-indicator" id="statusIndicator"></span>
+            </label>
+            <select id="field_status"></select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Register service worker for PWA functionality
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed'));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+/* ==========================================
+   REFINED RESEARCH TERMINAL STYLES
+   More sophisticated, professional aesthetic
+   while keeping the sci-fi vibe
+   ========================================== */
+
+:root {
+  /* Core Colors - More muted, professional */
+  --bg: #050609;
+  --panel: #0d0e12;
+  --panel-border: rgba(100, 200, 220, 0.08);
+  
+  /* Theme Colors */
+  --moonbeam-primary: #ff8c3a;
+  --moonbeam-secondary: #ffa560;
+  --moonbeam-grid: rgba(255, 140, 58, 0.12);
+  
+  --katalyst-primary: #b366ff;
+  --katalyst-secondary: #cc85ff;
+  --katalyst-grid: rgba(179, 102, 255, 0.12);
+  
+  /* Default to moonbeam theme */
+  --accent: var(--moonbeam-primary);
+  --accent-light: var(--moonbeam-secondary);
+  --grid-color: var(--moonbeam-grid);
+  
+  /* Semantic Colors */
+  --text-primary: #e8eef6;
+  --text-secondary: rgba(232, 238, 246, 0.6);
+  --text-muted: rgba(232, 238, 246, 0.4);
+  --danger: #ff6b6b;
+  --success: #34ffd6;
+}
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: radial-gradient(ellipse at 50% 30%, rgba(20, 22, 28, 0.4) 0%, transparent 50%), var(--bg);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* ==========================================
+   ANIMATED BACKGROUND GRID
+   ========================================== */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* Subtle grid pattern */
+  background-image:
+    linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 80px 80px;
+  
+  /* Slow drift animation */
+  animation: drift 30s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 160px 160px; }
+}
+
+/* Subtle scanline effect */
+.scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    var(--grid-color) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.15;
+  animation: scan 8s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0%, 100% { transform: translateY(-5%); }
+  50% { transform: translateY(5%); }
+}
+
+/* ==========================================
+   MAIN CARD
+   ========================================== */
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 16px;
+  
+  /* Sophisticated glassmorphism */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid var(--panel-border);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   LOGIN BOX
+   ========================================== */
+
+.login-box {
+  background: var(--panel);
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ==========================================
+   FORM ELEMENTS
+   ========================================== */
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: var(--text-muted);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: var(--accent);
+  box-shadow: 
+    0 0 0 3px rgba(var(--accent), 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 24px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #0a0b0f;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--accent);
+  
+  transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--accent);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+/* Checkbox styling */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   ERROR MESSAGE
+   ========================================== */
+
+.error-message {
+  min-height: 24px;
+  padding: 10px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--danger);
+  font-size: 13px;
+  border-radius: 8px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.error-message.show {
+  opacity: 1;
+}
+
+/* ==========================================
+   ACCESS GRANTED SCREEN
+   ========================================== */
+
+.access-granted {
+  background: linear-gradient(135deg, rgba(52, 255, 214, 0.05), rgba(107, 211, 255, 0.05));
+  padding: 60px 40px;
+  border-radius: 12px;
+  border: 2px solid var(--success);
+  text-align: center;
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(52, 255, 214, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(52, 255, 214, 0.6); }
+}
+
+.access-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.access-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--success);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.access-subtext {
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   PROFILE PAGE
+   ========================================== */
+
+.profile-page {
+  background: var(--panel);
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 107, 107, 0.2);
+  border-color: var(--danger);
+}
+
+/* ==========================================
+   PROFILE PICTURE
+   ========================================== */
+
+.profile-picture-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.picture-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.picture-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pic-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.upload-btn {
+  margin-top: 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* ==========================================
+   STATUS SYSTEM
+   ========================================== */
+
+.status-system {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: statusBlink 2s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================
+   KATALYST THEME OVERRIDE
+   ========================================== */
+
+body.katalyst-theme {
+  --accent: var(--katalyst-primary);
+  --accent-light: var(--katalyst-secondary);
+  --grid-color: var(--katalyst-grid);
+}
+
+body.katalyst-theme .profile-page {
+  background: linear-gradient(135deg, rgba(179, 102, 255, 0.08), rgba(13, 14, 18, 0.9));
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px;
+    max-width: 100%;
+  }
+  
+  .login-box,
+  .profile-page {
+    padding: 20px;
+  }
+  
+  .header-section h2 {
+    font-size: 20px;
+  }
+  
+  .picture-container {
+    width: 100px;
+    height: 100px;
+  }
+}
