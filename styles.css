@@ -471,11 +471,32 @@ select:disabled {
 .hidden {
   display: none !important;
 }
-
 /* ==========================================
    KATALYST THEME OVERRIDE
    ========================================== */
+/* ==========================================
+   SAVE BUTTON & CONFIRMATION
+   ========================================== */
 
+.save-btn {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.save-confirmation {
+  min-height: 20px;
+  text-align: center;
+  color: var(--success);
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-bottom: 16px;
+}
+
+.save-confirmation.show {
+  opacity: 1;
+}
 body.katalyst-theme {
   --accent: var(--katalyst-primary);
   --accent-light: var(--katalyst-secondary);
