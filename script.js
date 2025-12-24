@@ -190,11 +190,45 @@ function loadProfileFields(username) {
       input.value = savedValue;
     }
     
-    // Save on input
+    // Auto-save on input (keeps running in background)
     input.addEventListener("input", () => {
       localStorage.setItem(username + "_" + field, input.value);
     });
   });
+}
+
+/* ==========================================
+   MANUAL SAVE PROFILE FUNCTION
+   ========================================== */
+
+function saveProfile() {
+  const username = localStorage.getItem("currentUser");
+  if (!username) return;
+  
+  // Save all fields
+  const fields = ["codename", "realname", "role", "clearance"];
+  fields.forEach(field => {
+    const input = document.getElementById("field_" + field);
+    localStorage.setItem(username + "_" + field, input.value);
+  });
+  
+  // Save current status
+  const statusMode = document.getElementById("statusMode").value;
+  const currentStatus = document.getElementById("field_status").value;
+  localStorage.setItem(username + "_statusMode", statusMode);
+  if (statusMode === "manual") {
+    localStorage.setItem(username + "_manualStatus", currentStatus);
+  }
+  localStorage.setItem(username + "_status", currentStatus);
+  
+  // Show confirmation message
+  const confirmation = document.getElementById("saveConfirmation");
+  confirmation.textContent = "✓ Profile Saved Successfully";
+  confirmation.classList.add("show");
+  
+  setTimeout(() => {
+    confirmation.classList.remove("show");
+  }, 2000);
 }
 
 /* ==========================================
