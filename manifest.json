@@ -1,6 +1,6 @@
 {
-  "name": "Sector Ω-7 Research Terminal",
-  "short_name": "Sector Ω-7",
+ "name": "Phi-7 Research Portal",
+"short_name": "Phi-7",
   "description": "Secure research terminal access for authorized personnel",
   "start_url": "/Research-Portal/index.html",
   "scope": "/Research-Portal/",
