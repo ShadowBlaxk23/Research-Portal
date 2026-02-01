@@ -322,15 +322,7 @@ window.addEventListener("beforeunload", () => {
    INITIALIZATION
    ========================================== */
 
-// Check if user is already logged in
-window.addEventListener("DOMContentLoaded", () => {
-  const currentUser = localStorage.getItem("currentUser");
-  
-  if (currentUser && USERS[currentUser]) {
-    const user = USERS[currentUser];
-    document.body.className = user.theme;
-    
- // Force login each time app opens, but keep profile data
+// Force login each time app opens, but keep profile data
 window.addEventListener("DOMContentLoaded", () => {
   // Clear the session so login is required
   localStorage.removeItem("currentUser");
