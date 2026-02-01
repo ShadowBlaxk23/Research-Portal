@@ -330,7 +330,20 @@ window.addEventListener("DOMContentLoaded", () => {
     const user = USERS[currentUser];
     document.body.className = user.theme;
     
-  // Clear session on app load (force login each time)
+ // Force login each time app opens, but keep profile data
 window.addEventListener("DOMContentLoaded", () => {
+  // Clear the session so login is required
   localStorage.removeItem("currentUser");
+  
+  // Reset the view to login screen
+  document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("accessGranted").classList.add("hidden");
+  document.getElementById("profilePage").classList.add("hidden");
+  
+  // Reset theme
+  document.body.className = "";
+  
+  // Clear login fields
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
 });
