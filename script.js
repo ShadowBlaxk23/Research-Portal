@@ -330,8 +330,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const user = USERS[currentUser];
     document.body.className = user.theme;
     
-    // Skip login and go straight to profile
-    document.getElementById("loginBox").classList.add("hidden");
-    showProfile(user);
-  }
+  // Clear session on app load (force login each time)
+window.addEventListener("DOMContentLoaded", () => {
+  localStorage.removeItem("currentUser");
 });
